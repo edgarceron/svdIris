@@ -18,7 +18,7 @@ def compare_all_iris(iris_relative_path):
             distance_right = svd_iris.calculate_distance(identity_min_square_right, arr_iris)
             print(iris.name, distance_left, distance_right)
             smaller = min(distance_left, distance_right)
+            person = iris.name if smaller < mindistance else person
             mindistance = smaller if smaller < mindistance else mindistance
-            person = iris.name
     return mindistance, person
 

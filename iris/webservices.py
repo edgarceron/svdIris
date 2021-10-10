@@ -17,7 +17,7 @@ class ImageViewSet(ListAPIView):
         min, person = check_iris.compare_all_iris(image_relative)
         return HttpResponse(
             json.dumps({
-                'min': min,
-                'min': person,
+                'min': str(min),
+                'person': person,
                 "route": str(image_relative)
             }), status=200)

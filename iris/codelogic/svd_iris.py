@@ -40,8 +40,8 @@ def get_svd_iris(iris: Irises, eye: str, iris_matrix: np.ndarray, avg: np.ndarra
     file_name_svd =  create_dirs(iris.name, eye, 'svd')
     U = get_np_from_file(file_name_svd)
     if U is None:
-        X = iris_matrix - np.tile(avg,(iris_matrix.shape[1],1)).T
-        U, S, VT = np.linalg.svd(X,full_matrices=0)
+        #X = iris_matrix - np.tile(avg,(iris_matrix.shape[1],1)).T
+        U, S, VT = np.linalg.svd(iris_matrix,full_matrices=0)
         np.save(file_name_svd, U)
     return U
 
@@ -58,15 +58,15 @@ def get_identity_min_square(iris: Irises, eye: str):
     identity_min_square = get_np_from_file(file_name_square)
     if identity_min_square is None:
         U = calc_svd_iris(iris, eye)
-        squareU = np.float16(U)
-        squareU = np.dot(U, np.transpose(U))
+        U = np.float16(U)
+        squareU = np.matmul(U, np.transpose(U))
         u_shaped_identity = np.identity(squareU.shape[0], np.float16)
-        identity_min_square = u_shaped_identity - squareU
+        identity_min_square = np.subtract(u_shaped_identity, squareU)
         np.save(file_name_square, identity_min_square)
     return identity_min_square
 
 def calculate_distance(identity_min_square: np.ndarray, z: np.ndarray):
     z = np.float16(z)
-    res = np.dot(identity_min_square, z)
+    res = np.matmul(identity_min_square, z)
     distance = np.linalg.norm(res, 2)
     return distance

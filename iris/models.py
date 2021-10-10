@@ -6,8 +6,8 @@ from numpy import empty
 class Irises(models.Model):
     """"Modelo para los usuarios del sistema"""
     name = models.CharField(max_length=50, unique=True)
-    left = ArrayField(ArrayField(models.IntegerField()), blank=False)
-    right = ArrayField(ArrayField(models.IntegerField()), blank=False)
+    left = ArrayField(ArrayField(models.FloatField()), blank=False)
+    right = ArrayField(ArrayField(models.FloatField()), blank=False)
 
 def nameFile(instance, filename):
     return '/'.join(['images', str(instance.name), filename])

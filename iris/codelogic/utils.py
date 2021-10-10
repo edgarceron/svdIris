@@ -14,10 +14,9 @@ def get_array_image(subfolder, image):
         if imgobj.size == (320, 240):
             imgobj = imgobj.resize((80, 60))
             rsz_image_path = os.path.join(settings.MEDIA_ROOT, filename + "rsz" + file_extension)
-            os.makedirs(rsz_image_path, True) if not os.path.isdir(rsz_image_path) else None
             imgobj.save(rsz_image_path)
-            imgint = img_as_int(io.imread(rsz_image_path, True))
-            return imgint.flatten()
+            imgint = io.imread(rsz_image_path, True)
+            return imgint.ravel()
     return None
 
 def check_iris(name):
