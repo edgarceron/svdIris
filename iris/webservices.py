@@ -14,9 +14,10 @@ class ImageViewSet(ListAPIView):
         file = request.data['file']
         image = UploadImage.objects.create(image=file)
         image_relative = str(image.image)
-        result = check_iris.compare_all_iris(image_relative)
+        min, person = check_iris.compare_all_iris(image_relative)
         return HttpResponse(
             json.dumps({
-                **result,
+                'min': min,
+                'min': person,
                 "route": str(image_relative)
             }), status=200)

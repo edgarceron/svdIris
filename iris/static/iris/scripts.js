@@ -6,7 +6,7 @@ $(document).ready(function () {
         var files = $('#formFile')[0].files;
         if (files.length > 0) {
             var ext = $('#formFile').val().split('.').pop().toLowerCase();
-            if($.inArray(ext, ['jpg']) == -1) {
+            if($.inArray(ext, ['bmp']) == -1) {
                 alert('invalid extension!');
             }
             else{
