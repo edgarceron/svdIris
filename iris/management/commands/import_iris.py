@@ -1,7 +1,7 @@
 import os
 from django.core.management.base import BaseCommand
-from users.models import Irises, Config
-from users.codelogic import utils
+from iris.models import Irises, Config
+from iris.codelogic import utils
 from django.conf import settings
 
 
