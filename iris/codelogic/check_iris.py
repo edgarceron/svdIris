@@ -1,3 +1,4 @@
+import re
 import numpy as np
 from skimage import util
 from iris.codelogic import svd_iris, utils
@@ -9,6 +10,7 @@ def compare_all_iris(iris_relative_path):
     arr_iris = np.transpose(arr_iris)
     mindistance = np.Infinity
     person = ""
+    eye = ""
     if arr_iris is not None:
         persons_iris = Irises.objects.all().iterator()
         for iris in persons_iris:
@@ -17,8 +19,13 @@ def compare_all_iris(iris_relative_path):
             distance_left = svd_iris.calculate_distance(identity_min_square_left, arr_iris)
             distance_right = svd_iris.calculate_distance(identity_min_square_right, arr_iris)
             print(iris.name, distance_left, distance_right)
-            smaller = min(distance_left, distance_right)
-            person = iris.name if smaller < mindistance else person
-            mindistance = smaller if smaller < mindistance else mindistance
-    return mindistance, person
+            person, mindistance, eye =  calc_smaller(iris, distance_left, distance_right, mindistance, eye, person)
+    return person, mindistance, eye
 
+def calc_smaller(person, distance_left, distance_right, min, prev_eye, prev_name):
+    if distance_right < min:
+        return person.name, distance_right, 'derecho'
+    elif distance_left < min: 
+        return person.name, distance_left, 'izquierdo'
+    return prev_name, min, prev_eye
+    

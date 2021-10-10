@@ -21,12 +21,21 @@ $(document).ready(function () {
                     success: function (response) {
                         if (response != 0) {
                             $("#imageCanvas").attr("src", "/media/" + response["route"]);
+                            min = response["min"]
+                            if(min < 5){
+                                person = response['person'],
+                                eye = response['eye']
+                                alert("Corresponde con el ojo " + eye + " de la persona: " + person)
+                            }
+                            else {
+                                alert("Iris no corresponde a ningun usuario")
+                            }
                         }
                     },
                 });
             }
         } else {
-            alert("Please select a file.");
+            alert("Seleccione un archivo.");
         }
     })
 });
