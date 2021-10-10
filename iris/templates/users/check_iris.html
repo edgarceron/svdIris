@@ -1,0 +1,53 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Verificar identidad</title>
+
+    {% load static %}
+    {% include "./cssload.html" %}
+
+</head>
+
+<body>
+
+    <div class="col-lg-8 mx-auto p-3 py-md-5">
+        <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
+            <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+                <span class="fs-4">Verificar identidad</span>
+            </a>
+        </header>
+
+
+            <div class="container">            
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="formFileLg" class="form-label">Seleccione el iris a Verificar</label>
+                        <input class="form-control form-control-md" id="formFile" type="file" accept="image/jpg">
+                    </div>
+                    <div class="col-md-3">
+                        <img id="imageCanvas">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-primary" id="uploadButton">Subir</button>
+                    </div>
+                </div>
+            </div>
+
+        <footer class="pt-5 my-5 text-muted border-top">
+            Universidad del Valle · © 2021
+        </footer>
+    </div>
+
+    {% include "./jsload.html" %}
+    <script src="{% static 'iris/scripts.js' %}"></script>
+</body>
+
+</html>
