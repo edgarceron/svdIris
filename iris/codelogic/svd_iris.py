@@ -1,5 +1,6 @@
 import os
 import numpy as np
+from typing import Tuple
 from numpy.core.numeric import identity
 from numpy.linalg import svd
 from django.conf import settings
@@ -10,7 +11,7 @@ def create_dirs(name, eye, file):
     os.makedirs(dirs, True) if not os.path.isdir(dirs) else None
     return os.path.join(dirs , file + eye + '.npy')
 
-def calc_svd_iris(iris: Irises, eye: str) -> tuple[np.ndarray, np.ndarray]:
+def calc_svd_iris(iris: Irises, eye: str) -> Tuple[np.ndarray, np.ndarray]:
     iris_matrix = get_all_iris(iris, eye)
     avg_iris = get_avg_iris(iris, eye, iris_matrix)
     U = get_svd_iris(iris, eye, iris_matrix, avg_iris)
