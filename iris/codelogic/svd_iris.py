@@ -74,7 +74,6 @@ def get_identity_min_square(iris: Irises, eye: str):
         del U
         del squareU
         del u_shaped_identity
-        del identity_min_square
         gc.collect()
     return identity_min_square
 

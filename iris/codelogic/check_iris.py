@@ -1,4 +1,4 @@
-import re
+import gc
 import numpy as np
 from skimage import util
 from iris.codelogic import svd_iris, utils
@@ -20,6 +20,9 @@ def compare_all_iris(iris_relative_path):
             distance_right = svd_iris.calculate_distance(identity_min_square_right, arr_iris)
             print(iris.name, distance_left, distance_right)
             person, mindistance, eye =  calc_smaller(iris, distance_left, distance_right, mindistance, eye, person)
+            del identity_min_square_left
+            del identity_min_square_right
+            gc.collect()
     return person, mindistance, eye
 
 def calc_smaller(person, distance_left, distance_right, min, prev_eye, prev_name):
