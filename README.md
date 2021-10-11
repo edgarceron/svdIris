@@ -23,7 +23,9 @@ Desde la terminal ejecute:
 
 ```
 docker build --no-cache -t svdiris .
-docker-compose up
+docker-compose up -d
+docker exec -it svdiris-svdiris-1 python svdIris/manage.py migrate
+docker exec -it svdiris-svdiris-1 python svdIris/manage.py import_iris /opt/app/datairis/MMU-Iris-Database
 ```
 
 Desde el navegador dirijase a [http://localhost:8020/iris/check_iris](http://localhost:8020/iris/check_iris)
