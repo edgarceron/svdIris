@@ -1,4 +1,5 @@
 import os
+import gc
 import numpy as np
 from typing import Tuple
 from numpy.core.numeric import identity
@@ -70,7 +71,11 @@ def get_identity_min_square(iris: Irises, eye: str):
         identity_min_square = np.subtract(u_shaped_identity, squareU)
         np.save(file_name_square, identity_min_square)
         os.chmod(file_name_square, 777)
-
+        del U
+        del squareU
+        del u_shaped_identity
+        del identity_min_square
+        gc.collect()
     return identity_min_square
 
 def calculate_distance(identity_min_square: np.ndarray, z: np.ndarray):
