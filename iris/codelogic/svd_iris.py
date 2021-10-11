@@ -8,7 +8,8 @@ from iris.models import Irises
 
 def create_dirs(name, eye, file):
     dirs = os.path.join(settings.MEDIA_ROOT, name)
-    os.makedirs(dirs, 777) if not os.path.isdir(dirs) else None
+    os.makedirs(dirs) if not os.path.isdir(dirs) else None
+    os.chmod(dirs, 0o777)
     return os.path.join(dirs , file + eye + '.npy')
 
 def calc_svd_iris(iris: Irises, eye: str) -> Tuple[np.ndarray, np.ndarray]:
