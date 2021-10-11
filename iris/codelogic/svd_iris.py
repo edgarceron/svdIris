@@ -27,6 +27,7 @@ def get_all_iris(iris: Irises, eye: str) -> np.ndarray:
         else:
             arr = np.transpose(np.array(iris.right))
         np.save(file_name_x, arr)
+        os.chmod(file_name_x, 777)
     return arr
 
 def get_avg_iris(iris: Irises, eye: str, iris_matrix: np.ndarray) -> np.ndarray:
@@ -35,6 +36,7 @@ def get_avg_iris(iris: Irises, eye: str, iris_matrix: np.ndarray) -> np.ndarray:
     if avg is None:
         avg = np.mean(iris_matrix, axis=1)
         np.save(file_name_avg, avg)
+        os.chmod(file_name_avg, 777)
     return avg
 
 def get_svd_iris(iris: Irises, eye: str, iris_matrix: np.ndarray, avg: np.ndarray) -> np.ndarray:
@@ -44,6 +46,8 @@ def get_svd_iris(iris: Irises, eye: str, iris_matrix: np.ndarray, avg: np.ndarra
         #X = iris_matrix - np.tile(avg,(iris_matrix.shape[1],1)).T
         U, S, VT = np.linalg.svd(iris_matrix,full_matrices=0)
         np.save(file_name_svd, U)
+        os.chmod(file_name_svd, 777)
+
     return U
 
 def get_np_from_file(file_name) -> np.ndarray:
@@ -64,6 +68,8 @@ def get_identity_min_square(iris: Irises, eye: str):
         u_shaped_identity = np.identity(squareU.shape[0], np.float16)
         identity_min_square = np.subtract(u_shaped_identity, squareU)
         np.save(file_name_square, identity_min_square)
+        os.chmod(file_name_square, 777)
+
     return identity_min_square
 
 def calculate_distance(identity_min_square: np.ndarray, z: np.ndarray):

@@ -22,6 +22,7 @@ RUN cd /opt/app/svdIris && unzip MMU-Iris-Database.zip -d /opt/app/datairis
 RUN mkdir -p /opt/app/media
 RUN chmod 777 /opt/app/media
 RUN cd /opt/app/svdIris && python manage.py collectstatic --noinput
+RUN mkdir -p /opt/app/asdasd
 RUN cd /opt/app/svdIris && git pull origin master
 
 
