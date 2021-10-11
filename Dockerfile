@@ -21,7 +21,7 @@ RUN chown -R www-data:www-data /opt/app
 RUN cd /opt/app/svdIris && unzip MMU-Iris-Database.zip -d /opt/app/datairis
 RUN mkdir -p /opt/app/media
 RUN cd /opt/app/svdIris && python manage.py collectstatic --noinput
-RUN mkdir -p /opt/app/mediakk
+RUN mkdir -p /opt/app/mediapp
 RUN cd /opt/app/svdIris && git pull origin master
 
 
