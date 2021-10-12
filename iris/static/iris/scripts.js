@@ -12,7 +12,7 @@ $(document).ready(function () {
             else{
                 fd.append('file', files[0]);
                 $.ajax({
-                    url: 'upload2/',
+                    url: 'upload/',
                     type: 'post',
                     dataType: 'json',
                     data: fd,
