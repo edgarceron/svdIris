@@ -1,11 +1,13 @@
 import gc
 import numpy as np
 from skimage import util
-from iris.codelogic import svd_iris, utils
+from iris.codelogic import svd_iris, utils, optimization
 from iris.models import Irises
 from django.conf import settings
 
 def compare_all_iris(iris_relative_path):
+    optimized_compare_all_iris(iris_relative_path)
+    return "", 0, ""
     arr_iris = utils.get_array_image(settings.MEDIA_ROOT, iris_relative_path)
     arr_iris = np.transpose(arr_iris)
     mindistance = np.Infinity
@@ -24,6 +26,16 @@ def compare_all_iris(iris_relative_path):
             del identity_min_square_right
             gc.collect()
     return person, mindistance, eye
+
+def optimized_compare_all_iris(iris_relative_path):
+    arr_iris = utils.get_array_image(settings.MEDIA_ROOT, iris_relative_path)
+    arr_iris = np.transpose(arr_iris)
+    mindistance = np.Infinity
+    person = ""
+    eye = ""
+    if arr_iris is not None:
+        optimization.is_left_or_rigth(arr_iris)
+
 
 def calc_smaller(person, distance_left, distance_right, min, prev_eye, prev_name):
     if distance_right < min:
