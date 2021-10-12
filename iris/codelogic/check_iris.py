@@ -27,7 +27,7 @@ def compare_all_iris(iris_relative_path):
 
 def optimized_compare_all_iris(iris_relative_path):
     arr_iris = utils.get_array_image(settings.MEDIA_ROOT, iris_relative_path)
-    arr_iris = np.transpose(arr_iris)
+    arr_iris = np.transpose(optimization.get_quarter_image(arr_iris))
     mindistance = np.Infinity
     person = ""
     eye = ""
