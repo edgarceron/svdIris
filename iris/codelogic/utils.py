@@ -26,8 +26,8 @@ def check_iris(name):
     except Irises.DoesNotExist:
         return True
 
-def create_dirs(name, eye, file):
-    dirs = os.path.join(settings.MEDIA_ROOT, name)
+def create_dirs(folder, eye, file):
+    dirs = os.path.join(settings.MEDIA_ROOT, folder)
     os.makedirs(dirs) if not os.path.isdir(dirs) else None
     os.chmod(dirs, 0o777)
     return os.path.join(dirs , file + eye + '.npy')
@@ -35,6 +35,7 @@ def create_dirs(name, eye, file):
 def get_np_from_file(file_name) -> np.ndarray:
     try:
         arr = np.load(os.path.join(settings.MEDIA_ROOT, file_name))
+        #print("Cargando el archivo {}".format(file_name))
         return arr
     except IOError:
         print("Hubo un error al tratar de leer el archivo {}".format(file_name))

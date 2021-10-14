@@ -32,7 +32,10 @@ def optimized_compare_all_iris(iris_relative_path):
     person = ""
     eye = ""
     if arr_iris is not None:
-        optimization.is_left_or_rigth(arr_iris)
+        r, d = optimization.is_left_or_rigth(arr_iris)
+        l = optimization.start_sort_irises(r, d, arr_iris)
+        print("candidatos", l)
+    return "", 0, ""
 
 
 def calc_smaller(person, distance_left, distance_right, min, prev_eye, prev_name):

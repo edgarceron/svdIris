@@ -22,6 +22,7 @@ def create_variations(image_path: str, result_path: str, size=0) -> np.ndarray:
     for i in range(itrange):
         im = apply_variation(image_path, *TRANSFOMS[i])
         new_image_path = os.path.join(result_path, 'variation' + str(i) + '.bmp')
+        os.makedirs(result_path) if not os.path.isdir(result_path) else None
         im.save(new_image_path)
 
 def apply_variation(image_path: str, strecth: Tuple, angle: Tuple, translate: Tuple) -> Image.Image:

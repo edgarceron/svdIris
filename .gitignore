@@ -18,3 +18,5 @@ env/
 .vscode/
 
 .pip-cache
+
+svdIris/settings.py
